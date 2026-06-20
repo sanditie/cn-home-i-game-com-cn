@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>6686体育 · 站点介绍与说明</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f6fafc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d2c3b;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 蓝绿点缀色板 */
+    :root {
+      --teal-60: #0b7c7a;
+      --teal-40: #209e9b;
+      --teal-20: #c5efe9;
+      --teal-10: #e2f7f4;
+      --bluegrey: #2d4b5e;
+      --card-bg: #ffffff;
+      --border-light: #dce9ed;
+    }
+
+    /* 头部 / hero 区 */
+    .hero {
+      background: linear-gradient(145deg, #e5f3f0 0%, #d2ece6 100%);
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 6px 18px rgba(11, 124, 122, 0.08);
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0a3d3b;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #0a7c7a, #0f5f5d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      max-width: 700px;
+      color: #1e4e4c;
+    }
+
+    .hero .teal-tag {
+      display: inline-block;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #0b6765;
+      border: 1px solid #b7dbd6;
+      margin-top: 1.2rem;
+    }
+
+    /* 网格卡片系统 */
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 1.8rem;
+    }
+
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(11, 124, 122, 0.05);
+      border: 1px solid var(--border-light);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(11, 124, 122, 0.08);
+      border-color: #b3d7d2;
+    }
+
+    .card h2, .card h3 {
+      font-weight: 600;
+      color: #073b39;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card h3 { font-size: 1.15rem; }
+
+    .card p, .card li {
+      color: #2b4250;
+      font-size: 0.98rem;
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+      list-style-type: '— ';
+    }
+
+    .card ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight {
+      color: var(--teal-60);
+      font-weight: 500;
+    }
+
+    .accent-line {
+      width: 40px;
+      height: 4px;
+      background: var(--teal-40);
+      border-radius: 4px;
+      margin: 0.3rem 0 1rem;
+    }
+
+    /* 提示场景区 */
+    .scene-wrap {
+      background: var(--teal-10);
+      border-radius: 2rem;
+      padding: 2.2rem 2rem;
+      margin: 2.8rem 0;
+    }
+
+    .scene-wrap h2 {
+      font-size: 1.5rem;
+      color: #053d3b;
+      margin-bottom: 1.6rem;
+    }
+
+    .scene-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .scene-item {
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      padding: 1.2rem 1rem;
+      border-radius: 1.2rem;
+      border-left: 5px solid var(--teal-40);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .scene-item strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #0b5c5a;
+    }
+
+    /* FAQ 摘要 */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #d2e4e1;
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #0b5e5c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-item .a {
+      color: #2c4b56;
+      font-size: 0.95rem;
+    }
+
+    /* 链接 / 引用块 */
+    .trust-note {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 1rem;
+      border: 1px solid #c9dfda;
+      box-shadow: 0 2px 8px rgba(11,124,122,0.04);
+    }
+
+    .trust-note a {
+      color: var(--teal-60);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid var(--teal-20);
+      transition: border-color 0.15s;
+    }
+
+    .trust-note a:hover {
+      border-bottom-color: var(--teal-40);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid var(--teal-60);
+      color: var(--teal-60);
+      background: transparent;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      text-decoration: none;
+      margin-top: 0.6rem;
+    }
+
+    .btn-outline:hover {
+      background: var(--teal-60);
+      color: white;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #c0d9d4;
+      margin: 2rem 0;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 740px) {
+      body { padding: 0.8rem 0.8rem 2.5rem; }
+      .hero { padding: 1.8rem 1.2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 1.2rem; }
+      .faq-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .scene-wrap { padding: 1.6rem 1.2rem; }
+      .trust-note { padding: 1.4rem; }
+      .hero p { font-size: 1rem; }
+      .card { padding: 1.4rem; }
+    }
+
+    @media (min-width: 741px) and (max-width: 1024px) {
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #64827e;
+      margin-top: 3rem;
+      border-top: 1px solid #d2e3df;
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 区 -->
+  <div class="hero">
+    <h1><span>6686体育</span> · 站点概要说明</h1>
+    <p>一份关于站点定位、内容特征与使用参考的整理。我们力求以清晰、平实的角度，介绍用户可能会关心的功能轮廓与边界说明。</p>
+    <div class="teal-tag">📋 信息整理 · 仅供了解参考</div>
+  </div>
+
+  <!-- 介绍：站点摘要与定位 -->
+  <div class="grid-2">
+    <div class="card">
+      <h2>📌 站点摘要</h2>
+      <div class="accent-line"></div>
+      <p><span class="highlight">6686体育</span> 是一个以体育相关内容为主的信息型站点，涵盖赛事动态、数据参考及社区观点。站内内容经过基础分类，方便使用者按兴趣浏览。</p>
+      <p style="margin-top:0.8rem;">整体界面风格偏向实用，强调信息密度与快速检索。该站点并不代替任何官方数据源，而是作为聚合与补充参考。</p>
+    </div>
+    <div class="card">
+      <h2>⚙️ 核心亮点</h2>
+      <div class="accent-line"></div>
+      <ul>
+        <li>分类结构清晰，可快速定位感兴趣的大项</li>
+        <li>页面加载速度表现稳定，移动端适配较好</li>
+        <li>内容更新频率相对规律，时效性有基础保障</li>
+        <li>无强制注册或过量弹窗，浏览干扰较少</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 使用建议卡片区 -->
+  <div style="margin: 2.8rem 0 1.5rem;">
+    <div class="grid-3">
+      <div class="card">
+        <h3>🔍 浏览建议</h3>
+        <p>建议优先使用站内导航或搜索功能来定位目标内容。分类标签与关键词索引可以节省反复查找的时间。</p>
+      </div>
+      <div class="card">
+        <h3>📱 设备兼容</h3>
+        <p>在手机与平板设备上布局会自动优化，横向滚动幅度较小。部分表格或数据卡片在窄屏下以堆叠方式展示。</p>
+      </div>
+      <div class="card">
+        <h3>🧩 内容参考</h3>
+        <p>站内信息可作为辅助参考，但对于关键决策或实时数据请交叉核对原始来源。站点不提供投资或博彩建议。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景说明 -->
+  <div class="scene-wrap">
+    <h2>📎 常见使用场景</h2>
+    <div class="scene-cards">
+      <div class="scene-item">
+        <strong>🏟️ 赛事追踪</strong>
+        快速浏览近期赛事结果与对阵信息，辅助个人关注列表。
+      </div>
+      <div class="scene-item">
+        <strong>📊 数据参考</strong>
+        查看历史统计数据或趋势图表，用于兴趣分析或交流讨论。
+      </div>
+      <div class="scene-item">
+        <strong>📰 动态阅读</strong>
+        阅读站内编辑整理的短讯与摘要，适合碎片化时间。
+      </div>
+      <div class="scene-item">
+        <strong>🧑‍🤝‍🧑 社区观点</strong>
+        部分板块呈现用户评论或讨论热度，可以了解不同视角。
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <h2 style="font-size:1.4rem; color: #0a3d3b; margin: 1rem 0 0.3rem;">❓ 常见疑问摘要</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <span class="q">需要注册才能浏览吗？</span>
+      <span class="a">大部分内容可直接访问，部分互动功能可能需简易注册，但浏览不受限。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">内容更新频率如何？</span>
+      <span class="a">通常每日有增量更新，重大赛事期间更新密度会提高。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">移动端体验如何？</span>
+      <span class="a">响应式设计，重点功能均可正常使用，加载速度良好。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">是否有官方或权威背书？</span>
+      <span class="a">本说明仅为信息介绍，站点本身为独立运营，不具备官方机构背景。</span>
+    </div>
+  </div>
+
+  <!-- 可信但克制的访问说明 -->
+  <div class="trust-note">
+    <h3 style="color: #0b5e5c; font-size:1.2rem; margin-bottom:0.8rem;">🛡️ 关于访问的补充说明</h3>
+    <p>本站从产品说明的角度整理上述信息。如果你对体育资讯、数据汇总感兴趣，可以自行了解 <a href="https://site-6686sports.com">6686体育</a> 所提供的内容范畴与界面结构。该站点不包含任何形式的金融、医疗或法律建议，也不代表任何机构的官方立场。建议根据个人需求合理使用，并留意信息来源的多元性。</p>
+    <p style="margin-top:0.8rem;">如果你是首次访问，可以先浏览公开的分类页面，不需要立即注册或授权任何个人信息。与所有网络资源一样，保持信息甄别习惯是必要的。</p>
+    <a href="https://site-6686sports.com" class="btn-outline">6686体育</a>
+  </div>
+
+  <hr>
+
+  <!-- 额外的卡片：可信维度 -->
+  <div class="grid-2" style="margin: 1rem 0 0.8rem;">
+    <div class="card">
+      <h3>🧭 导航结构</h3>
+      <p>顶部固定导航栏包含主要大类，右侧辅以快捷入口。内部链接使用 <span class="highlight">描述性文本</span>，减少歧义。</p>
+    </div>
+    <div class="card">
+      <h3>📄 内容组织</h3>
+      <p>每篇文章或数据页均带有时间戳与分类标签。部分页面附有免责提示，适合作为参考信息流的一部分。</p>
+    </div>
+  </div>
+
+  <!-- footer 占位 -->
+  <div class="footer-note">
+    本页为独立介绍说明 · 与站点运营方无直接附属关系 · 信息仅供了解
+  </div>
+</div>
+</body>
+</html>
