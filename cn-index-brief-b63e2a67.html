@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牌局之间 | 炸金花 · 闲趣与策略</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f6f3ef;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2e2b28;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(135deg, #1f2a32 0%, #0f1a22 100%);
+            color: #ece7e0;
+            padding: 3.5rem 1.5rem 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(210, 180, 140, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 350;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: #f0e7da;
+        }
+
+        .hero h1 span {
+            font-weight: 500;
+            color: #e0c9a6;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #c5bbb0;
+            max-width: 600px;
+            margin: 1rem auto 0.8rem;
+            opacity: 0.85;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(210, 180, 140, 0.18);
+            border: 1px solid rgba(210, 180, 140, 0.2);
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #d9caba;
+            margin-top: 0.5rem;
+        }
+
+        /* 正文区 浅色背景 */
+        .main-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem 1.5rem;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 1.8rem 0 2.8rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem 2rem 1.5rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border: 1px solid #ece7e0;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 450;
+            margin-bottom: 0.6rem;
+            color: #20201e;
+            letter-spacing: 0.3px;
+        }
+
+        .card p {
+            font-size: 0.96rem;
+            color: #4d4945;
+            margin-bottom: 0.2rem;
+        }
+
+        .card .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .card .tag-list span {
+            background: #f0ebe4;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #4f4841;
+        }
+
+        /* 自然链接段落区 */
+        .link-section {
+            background: #faf8f5;
+            border-radius: 24px;
+            padding: 2.2rem 2rem 2.5rem 2rem;
+            margin: 2.5rem 0 2rem 0;
+            border: 1px solid #e5ddd4;
+        }
+
+        .link-section h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #1f2a32;
+            letter-spacing: 0.5px;
+        }
+
+        .link-section p {
+            font-size: 1rem;
+            color: #3e3a36;
+            max-width: 750px;
+            margin-bottom: 1rem;
+        }
+
+        .link-section a {
+            color: #a57c4b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .link-section a:hover {
+            color: #7d5e37;
+            border-bottom: 1px solid #b89363;
+        }
+
+        .link-section .extra-note {
+            background: #efe9e0;
+            padding: 1rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #4b443c;
+            margin-top: 0.6rem;
+        }
+
+        /* 适合人群 + 提示摘要 */
+        .audience-tip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.8rem;
+            margin: 2.8rem 0 1.2rem 0;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e3dcd2;
+        }
+
+        .audience-box {
+            flex: 1 1 240px;
+        }
+
+        .audience-box h4 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #1f2a32;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .audience-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .audience-box li {
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+            color: #4f4a44;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .audience-box li::before {
+            content: '·';
+            margin-right: 0.6rem;
+            color: #b89363;
+            font-weight: bold;
+        }
+
+        .tip-box {
+            flex: 1 1 240px;
+            background: #f6f2eb;
+            border-radius: 18px;
+            padding: 1.2rem 1.6rem;
+            align-self: center;
+        }
+
+        .tip-box p {
+            font-size: 0.9rem;
+            color: #3f3a35;
+            margin-bottom: 0.3rem;
+        }
+
+        .tip-box strong {
+            color: #7d5e37;
+        }
+
+        /* 分隔 / 底部 */
+        .faq-mini {
+            margin: 2rem 0 1.5rem 0;
+            border-top: 1px solid #e0d6ca;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.7rem;
+            border-left: 3px solid #dac2a4;
+            padding-left: 1rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 470;
+            cursor: pointer;
+            color: #2b2a27;
+            font-size: 1rem;
+            padding: 0.25rem 0;
+        }
+
+        .faq-mini details p {
+            margin: 0.5rem 0 0.2rem 0;
+            color: #5b554e;
+            font-size: 0.92rem;
+        }
+
+        .footnote {
+            text-align: center;
+            padding: 0.5rem 0 1rem 0;
+            color: #8b847b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e5ddd4;
+            margin-top: 2.2rem;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                padding: 2.5rem 1rem 2.2rem 1rem;
+            }
+            .card-grid {
+                gap: 1.3rem;
+            }
+            .link-section {
+                padding: 1.5rem 1.2rem;
+            }
+            .audience-tip {
+                padding: 1.5rem 1.2rem;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 深色头图 -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>牌桌 · 闲趣<br><span>炸金花</span></h1>
+        <p>一副牌，三张花色，片刻专注。不追求浮夸输赢，更在意相聚时的手谈与默契。</p>
+        <div class="hero-tag">民间 · 经典 · 策略</div>
+    </div>
+</header>
+
+<div class="main-wrapper">
+    <!-- 用途卡片 · 主视觉与玩法 -->
+    <div class="card-grid">
+        <article class="card">
+            <span class="card-icon">🃏</span>
+            <h3>经典三张</h3>
+            <p>去掉大小王，每人三张手牌。豹子、同花、顺子…… 最简单的组合，却藏着最微妙的心理博弈。</p>
+            <div class="tag-list">
+                <span>概率</span>
+                <span>跟注</span>
+                <span>加注</span>
+            </div>
+        </article>
+        <article class="card">
+            <span class="card-icon">🧩</span>
+            <h3>聚会破冰</h3>
+            <p>不必太认真，也不全凭运气。几句谈笑间，牌局自然流动，是好友小聚时的轻松话题。</p>
+            <div class="tag-list">
+                <span>朋友</span>
+                <span>休闲</span>
+                <span>低门槛</span>
+            </div>
+        </article>
+        <article class="card">
+            <span class="card-icon">⚖️</span>
+            <h3>策略练习</h3>
+            <p>观察、判断、适时沉默。炸金花的乐趣不止于手牌好坏，更在于读懂牌桌气氛。</p>
+            <div class="tag-list">
+                <span>观察力</span>
+                <span>决策</span>
+                <span>心理</span>
+            </div>
+        </article>
+    </div>
+
+    <!-- 自然链接段落 (嵌入核心链接) -->
+    <div class="link-section">
+        <h2>从牌局到日常</h2>
+        <p>许多人第一次接触 <a href="https://cn-index-zhajinhua.com">炸金花</a> 是在家庭聚会或朋友串门时，一副扑克、几把椅子，规则简单到三分钟就能说清。但玩过几轮之后你会发现，真正的乐趣其实来自那几次「跟还是不跟」的犹豫——是相信自己的牌，还是相信对面那人的表情？</p>
+        <p>后来网络方便了，大家偶尔在线上约一局。但无论面对面还是隔着屏幕，<a href="https://cn-index-zhajinhua.com">炸金花</a> 的核心始终是那一点闲适的紧张感：你永远不知道下一张牌会不会帮你凑成好局，但也正因如此，每次翻牌都带着一点期待。</p>
+        <div class="extra-note">
+            🎲 规则不难，但值得慢慢体会。
+        </div>
+    </div>
+
+    <!-- 适合人群 + FAQ摘要提示 -->
+    <div class="audience-tip">
+        <div class="audience-box">
+            <h4>👥 适合什么样的人</h4>
+            <ul>
+                <li>周末想找不累脑的娱乐</li>
+                <li>喜欢在轻松氛围中小赌怡情</li>
+                <li>对扑克组合与概率有点好奇</li>
+                <li>希望聚会时有话题活动</li>
+            </ul>
+        </div>
+        <div class="tip-box">
+            <p><strong>💡 一点提示</strong></p>
+            <p>炸金花的变体不少，有些地区会加入“喜钱”或特殊规则。开始前先约定好玩法，比什么都重要。</p>
+            <p style="margin-top:0.5rem;">✦ 没有绝对胜率，只有相对判断。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 (2~3条简洁问答) -->
+    <div class="faq-mini">
+        <details>
+            <summary>炸金花和德州扑克有什么不同？</summary>
+            <p>牌数更少，节奏更快，心理博弈更直接。炸金花只有三张牌，没有公共牌，也更看重即时判断。</p>
+        </details>
+        <details>
+            <summary>新手容易犯什么小错误？</summary>
+            <p>常见的是高估小对子或同花的概率，或者被对手的“偷鸡”带偏节奏。保持平常心就好。</p>
+        </details>
+        <details>
+            <summary>线上玩和线下玩感觉一样吗？</summary>
+            <p>线下能看到表情变化，线上则更依赖下注模式。各有各的乐趣，也有人更喜欢网上的匿名感。</p>
+        </details>
+    </div>
+
+    <!-- 收尾 -->
+    <div class="footnote">
+        一副牌 · 多种可能
+    </div>
+</div>
+
+</body>
+</html>
