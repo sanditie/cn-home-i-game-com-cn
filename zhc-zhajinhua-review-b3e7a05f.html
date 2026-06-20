@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zhc-zhajinhua.com · 杂志专题 · 炸金花</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', '宋体', 'Songti SC', serif;
+        }
+
+        body {
+            background: #f5f0e8;
+            color: #2c2b28;
+            line-height: 1.7;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #1e1c18 0%, #2b2823 100%);
+            padding: 6rem 2rem 4.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 70% 20%, rgba(210, 180, 140, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: #eaddc5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .sub {
+            margin-top: 1.2rem;
+            font-size: 1.1rem;
+            color: #bcae92;
+            letter-spacing: 2px;
+            border-top: 1px solid #5f5542;
+            border-bottom: 1px solid #5f5542;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            background: rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2.8rem 1.8rem 4rem;
+        }
+
+        .intro-card {
+            background: #fcfaf6;
+            border-radius: 20px;
+            padding: 2.8rem 2.5rem;
+            box-shadow: 0 12px 28px -12px rgba(0,0,0,0.15);
+            margin: -2rem auto 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-card p {
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #3b3730;
+            border-left: 4px solid #a67c52;
+            padding-left: 1rem;
+            margin: 2.2rem 0 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .two-col {
+            display: flex;
+            gap: 2.5rem;
+            margin: 1.2rem 0 2rem;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 200px;
+            background: #f9f5ee;
+            border-radius: 16px;
+            padding: 1.6rem 1.8rem;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .col h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #4f463a;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #d6cdbe;
+            padding-bottom: 0.4rem;
+        }
+
+        .col p {
+            font-size: 0.97rem;
+            color: #3d3a34;
+        }
+
+        .highlight-link {
+            color: #a67c52;
+            text-decoration: none;
+            border-bottom: 1px dotted #a67c52;
+            transition: border-bottom 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+
+        .highlight-link:hover {
+            color: #7c5d3b;
+            border-bottom: 1px solid #7c5d3b;
+        }
+
+        .faq-mini {
+            background: #f3ede4;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin: 2.2rem 0;
+            border-left: 6px solid #a67c52;
+        }
+
+        .faq-mini dt {
+            font-weight: 600;
+            color: #3b3730;
+            margin-top: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-mini dt:first-of-type {
+            margin-top: 0;
+        }
+
+        .faq-mini dd {
+            margin-left: 0.8rem;
+            color: #4c4841;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #d4cbbc;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #6d655a;
+            letter-spacing: 1px;
+        }
+
+        .footer-note a {
+            color: #a67c52;
+            text-decoration: none;
+            border-bottom: 1px solid #a67c52;
+        }
+
+        .footer-note a:hover {
+            color: #7c5d3b;
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero { padding: 4rem 1.2rem 3rem; }
+            .intro-card { padding: 1.8rem 1.5rem; }
+            .two-col { flex-direction: column; gap: 1.2rem; }
+            .faq-mini { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>炸金花 · 纸牌脉络</h1>
+        <div class="sub">专题 · 规则 · 可信站点</div>
+    </div>
+
+    <div class="container">
+
+        <div class="intro-card">
+            <p>
+                在众多民间纸牌游戏中，<strong>炸金花</strong>以独特的心理博弈和概率美学，成为许多人闲暇时乐于切磋的经典。它并不需要繁复的装备，一副扑克、三五牌友，便足以营造出紧张而微妙的竞技场。一副牌除去大小王，每人三张，比大比小，看似简单，内里却暗藏虚张声势与冷静判断的拉锯。
+            </p>
+            <p>
+                作为围绕这一游戏建立的信息页面，<a href="https://zhc-zhajinhua.com" class="highlight-link">炸金花</a>旨在提供清晰、可靠的内容参考。站点从基本牌型组合出发，逐步延伸到常见对局情境与策略思路，帮助不同阶段的玩家更系统地理解游戏逻辑，减少因信息模糊而产生的规则争论。
+            </p>
+        </div>
+
+        <h2 class="section-title">从牌型到局面</h2>
+        <div class="two-col">
+            <div class="col">
+                <h3>牌型等级</h3>
+                <p>豹子、同花顺、同花、顺子、对子、散牌……每一类都有明确的出现概率。站内用表格与示例手牌，直观呈现这些组合的强弱次序，避免凭感觉定胜负的模糊地带。</p>
+            </div>
+            <div class="col">
+                <h3>比牌与加注</h3>
+                <p>不看牌闷注、看牌后加注、比牌与否——每个选择都涉及对剩余牌堆的推测。站点整理了常见的跟注节奏与比牌时机，帮助读者理解什么时候该稳，什么时候值得一搏。</p>
+            </div>
+        </div>
+
+        <div class="faq-mini">
+            <dl>
+                <dt>▎这个网站提供的内容有依据吗？</dt>
+                <dd>所有牌型概率均基于标准52张扑克牌计算，规则说明参照广泛流传的通用版本，不掺杂个人改编。你可以对照任意一局实际游戏进行验证。</dd>
+                <dt>▎适合完全不熟悉炸金花的人吗？</dt>
+                <dd>是的。从牌面大小到叫注流程，站内按逻辑顺序编排，即使第一次接触，也能按章节逐步建立认知。页面文字以描述性为主，不预设读者有实际对局经验。</dd>
+                <dt>▎内容是否会持续更新？</dt>
+                <dd>站点会定期根据玩家反馈校准细节，比如特殊规则的地方差异，或更清晰的概率图解。保持信息准确比追求花哨更重要。</dd>
+            </dl>
+        </div>
+
+        <p style="margin-top: 1.6rem; font-size: 1rem; color: #4f4a42;">
+            了解一种游戏，最好的方式是从它的底层逻辑开始。无论你是想巩固规则记忆，还是希望向朋友讲清楚某一条牌型争议，<a href="https://zhc-zhajinhua.com" class="highlight-link">炸金花</a>这个页面都尽量做到不夸大、不模糊。它不试图教你“必胜法”，而是提供一块扎实的地图，让你在牌桌上更自在地思考。
+        </p>
+
+        <div class="footer-note">
+            <span>内容基于通用规则梳理 · 信息参考页面</span><br>
+            <span style="font-size: 0.85rem; color: #8f8578;">欢迎浏览 <a href="https://zhc-zhajinhua.com">炸金花</a> 了解更多细节</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
